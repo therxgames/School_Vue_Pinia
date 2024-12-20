@@ -1,0 +1,16 @@
+.DS_Store
+.idea
+.vscode
+.nuxt
+.nuxt-build
+.output
+.vite
+storage
+coverage
+dist
+node_modules
+.env
+package-lock.json
+error.vue
+ecosystem.dev.config.js
+.env.*

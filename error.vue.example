@@ -1,0 +1,109 @@
+<template>
+  <nuxt-layout name="default">
+    <div class="gradient-bg"/>
+    <div class="page-error page-default content-container">
+      <div class="page-error-panel">
+        <h1 class="page-error-panel-header">
+          <span class="page-error-panel-header-text">{{ errorData.title }}</span>
+          <img
+            class="page-error-panel-header-icon"
+            :src="errorData.icon">
+        </h1>
+        <div class="page-error-panel-desc">
+          {{ errorData.desc }}
+        </div>
+        <nuxt-link
+          :to="errorData.to"
+          class="page-error-panel-link icon-text">
+          <span>На главную</span>
+          <svg-icon name="arrow-right"/>
+        </nuxt-link>
+      </div>
+    </div>
+  </nuxt-layout>
+</template>
+
+<script setup>
+  import emoji1 from '~/assets/images/emoji/1.png';
+  import emoji5 from '~/assets/images/emoji/5.png';
+  import emoji6 from '~/assets/images/emoji/6.png';
+
+  onMounted(() => {
+    console.error({...props.error});
+  });
+
+  const props = defineProps({
+    error: {
+      type: Object,
+      require: true
+    }
+  });
+  const errorData = computed(() => {
+    const data = {
+      title: 'Неизвестная ошибка',
+      desc: 'Что-то пошло не так, но мы уже знаем о проблеме и занимаемся ее устранением',
+      icon: emoji6,
+      to: '/'
+    };
+
+    if (+props.error.statusCode === 404) {
+      data.title = 'Страница не найдена';
+      data.desc = 'Страница, которую вы ищите, не существует. Возможно она устарела, была удалена или был введен неверный адрес';
+      data.icon = emoji1;
+    }
+
+    if (+props.error.statusCode === 403) {
+      data.title = 'Доступ ограничен';
+      data.desc = 'Проверьте права доступа вашей учетной записи или попробуйте обновить страницу';
+      data.icon = emoji5;
+    }
+
+    return data;
+  });
+</script>
+
+<style lang="scss">
+  @import '/assets/scss/theme';
+
+  .page-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10%;
+
+    &-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      max-width: 39.375rem;
+
+      &-header {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0;
+
+        &-icon {
+          width: 2rem;
+        }
+
+        &-text {
+
+        }
+      }
+
+      &-desc {
+        font-size: 1.125rem;
+        text-align: center;
+        color: $color-dark;
+      }
+
+      &-link {
+        --icon-width: 0.6rem;
+        --icon-height: 0.6rem;
+      }
+    }
+
+  }
+</style>

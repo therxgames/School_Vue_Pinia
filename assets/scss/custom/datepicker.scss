@@ -1,0 +1,66 @@
+.dp__calendar_header_separator {
+  opacity: 0;
+  margin: 0;
+}
+
+.dp__calendar_row {
+  margin: 0 !important;
+}
+
+.dp__calendar_item:has(div.dp__range_start) {
+  border-radius: 50% 0 0 50%;
+  background: #f5f5f5;
+}
+
+.dp__calendar_item:has(div.dp__range_end) {
+  border-radius: 0 50% 50% 0;
+  background: #f5f5f5;
+}
+
+.dp__range_start,
+.dp__range_end {
+  position: relative;
+  border-radius: 50% !important;
+  font-weight: 500 !important;
+  background: #0576ff !important;
+  color: #fff !important;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #f5f5f5;
+    z-index: -1;
+  }
+}
+
+.dp__range_start::before {
+  border-radius: 50% 0 0 50%;
+}
+
+.dp__range_end::before {
+  border-radius: 0 50% 50% 0;
+}
+
+.dp__range_between {
+  background: #f5f5f5 !important;
+}
+
+.dp__calendar_header_item {
+  color: #7f838a;
+  font-size: 14px;
+  padding: 0 !important;
+  font-weight: 400 !important;
+}
+
+.dp__cell_inner {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.dp__action_row {
+  padding: 0 !important;
+}

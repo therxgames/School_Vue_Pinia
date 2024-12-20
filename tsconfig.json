@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "allowJs": true,
+    "lib": [
+      "ES2016",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      }
+    ]
+  },
+  "include": [
+    "./.nuxt-build/nuxt.d.ts",
+    "**/*"
+  ],
+  "extends": "./.nuxt-build/tsconfig.json"
+}
